@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, map, tap, debounceTime } from 'rxjs/operators';
+
+import { Card } from './card';
 
 @Injectable({
   providedIn: 'root'
@@ -10,15 +12,19 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class CardFetcherService {
 	
   private scryfallUrl = 'https://api.scryfall.com';
+  parameter: String;
 
   constructor(
 	private http: HttpClient,
   ) { }
   
-  getCard(): Observable<string> {
-    return this.http.get<string>(this.scryfallUrl+'/cards/named?fuzzy=aust+com').
+  getCard(searchTerm: string): Observable<Card> {
+	this.parameter = searchTerm.replace(' ', '+');
+	console.log(this.parameter);
+    return this.http.get<Card>(this.scryfallUrl+'/cards/named?fuzzy='+this.parameter).
 	  pipe(
-	    catchError(this.handleError<string>('getCard', '')),
+		debounceTime(100),
+	    catchError(this.handleError<Card>('getCard', null)),
 	  );
   }
   

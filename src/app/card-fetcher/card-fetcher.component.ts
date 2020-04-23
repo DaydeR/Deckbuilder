@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Card } from '../card';
 import { CardFetcherService } from '../card-fetcher.service';
 
 @Component({
@@ -8,7 +9,8 @@ import { CardFetcherService } from '../card-fetcher.service';
   styleUrls: ['./card-fetcher.component.css']
 })
 export class CardFetcherComponent implements OnInit {
-  card = 'none';
+  cardName: string;
+  card: Card;
 
   constructor(
 	private cardFetcherService: CardFetcherService
@@ -18,7 +20,7 @@ export class CardFetcherComponent implements OnInit {
   }
   
   getCard(): void {
-    this.cardFetcherService.getCard()
+    this.cardFetcherService.getCard(this.cardName)
 	  .subscribe(card => this.card = card);
   }
 }
