@@ -2,4 +2,9 @@
 
 <button (click)="getCard()">Fetch</button>
 
-<h6>{{card.name}}</h6>
+<div *ngIf="card">
+  <h6>{{card.name}}</h6>
+  <h6>{{card.mana_cost}}</h6>
+  <h6>{{card.oracle_text}}</h6>
+  <img src="{{card.image_uris.normal}}" alt="{{card.name}}">
+</div>

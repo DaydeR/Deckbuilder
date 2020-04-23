@@ -20,7 +20,6 @@ export class CardFetcherService {
   
   getCard(searchTerm: string): Observable<Card> {
 	this.parameter = searchTerm.replace(' ', '+');
-	console.log(this.parameter);
     return this.http.get<Card>(this.scryfallUrl+'/cards/named?fuzzy='+this.parameter).
 	  pipe(
 		debounceTime(100),
