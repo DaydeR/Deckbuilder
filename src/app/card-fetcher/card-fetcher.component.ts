@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Card } from '../card';
 import { CardFetcherService } from '../card-fetcher.service';
+import { DecklistService } from '../decklist.service';
 
 @Component({
   selector: 'app-card-fetcher',
@@ -10,17 +11,25 @@ import { CardFetcherService } from '../card-fetcher.service';
 })
 export class CardFetcherComponent implements OnInit {
   cardName: string;
-  card: Card;
+  count: number;
+  fetchedCard: Card;
 
   constructor(
-	private cardFetcherService: CardFetcherService
+	private cardFetcherService: CardFetcherService,
+	private decklistService: DecklistService,
   ) { }
 
   ngOnInit(): void {
   }
   
-  getCard(): void {
+  addCard(): void {
     this.cardFetcherService.getCard(this.cardName)
-	  .subscribe(card => this.card = card);
+	  .subscribe(card => {
+	    this.fetchedCard = card;
+		this.decklistService.addCard(this.fetchedCard, this.count);
+	    this.fetchedCard = null;
+	    this.cardName = null;
+	    this.count = null;
+	  });
   }
 }
