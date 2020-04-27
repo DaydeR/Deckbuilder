@@ -1,0 +1,14 @@
+.body {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: no-wrap;
+  justify-content: flex-start;
+}
+
+.card-viewer-panel {
+  flex-grow: 1;
+}
+
+.deckbox-panel {
+  flex-grow: 2;
+}
