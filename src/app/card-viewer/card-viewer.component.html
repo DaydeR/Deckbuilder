@@ -1,3 +1,9 @@
 <div *ngIf="selectedCard">
-  {{selectedCard.name}}
+  <p>{{selectedCard.name}}</p>
+  <img src="{{selectedCard.image_uris.large}}" alt="{{selectedCard.name}}">
+  <p>{{selectedCard.mana_cost}}</p>
+  <p>{{selectedCard.type_line}}</p>
+  <p>{{selectedCard.oracle_text}}</p>
+  <p *ngIf="selectedCard.power">{{selectedCard.power}}/{{selectedCard.toughness}}</p>
+  <p *ngIf="selectedCard.loyalty">{{selectedCard.loyalty}}</p>
 </div>

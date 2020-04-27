@@ -7,4 +7,7 @@ export interface Card {
   image_uris: {
 	[key: string]: string
   };
+  power: number;
+  toughness: number;
+  loyalty: number;
 }
