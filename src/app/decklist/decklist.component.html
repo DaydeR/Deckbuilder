@@ -1,5 +1,5 @@
 <div class="decklist-grid">
   <div *ngFor="let card of decklist">
-    <img src="{{card.image_uris.small}}" alt="{{card.name}}">
+    <img (click)="select(card)" src="{{card.image_uris.small}}" alt="{{card.name}}">
   </div>
 </div>

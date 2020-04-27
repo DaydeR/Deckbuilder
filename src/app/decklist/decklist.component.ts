@@ -21,5 +21,9 @@ export class DecklistComponent implements OnInit {
       console.log(this.decklist[i].name);
     }
   }
+  
+  select(card: Card) {
+	this.decklistService.setSelected(card);
+  }
 
 }

@@ -7,12 +7,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CardFetcherComponent } from './card-fetcher/card-fetcher.component';
 import { DecklistComponent } from './decklist/decklist.component';
+import { CardViewerComponent } from './card-viewer/card-viewer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CardFetcherComponent,
-    DecklistComponent
+    DecklistComponent,
+    CardViewerComponent
   ],
   imports: [
     BrowserModule,
