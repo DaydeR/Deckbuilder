@@ -25,9 +25,11 @@ export class CardFetcherComponent implements OnInit {
   addCard(): void {
     this.cardFetcherService.getCard(this.cardName)
 	  .subscribe(card => {
-	    this.fetchedCard = card;
-		this.decklistService.addCard(this.fetchedCard, this.count);
-	    this.fetchedCard = null;
+		if(card) {
+	      this.fetchedCard = card;
+		  this.decklistService.addCard(this.fetchedCard, this.count);
+	      this.fetchedCard = null;
+		}
 	    this.cardName = null;
 	    this.count = null;
 	  });

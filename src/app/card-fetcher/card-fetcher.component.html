@@ -2,10 +2,3 @@
 <input [(ngModel)]="count" placeholder="#"/>
 
 <button (click)="addCard()">Add</button>
-
-<div *ngIf="fetchedCard">
-  <h6>{{fetchedCard.name}}</h6>
-  <h6>{{fetchedCard.mana_cost}}</h6>
-  <h6>{{fetchedCard.oracle_text}}</h6>
-  <img src="{{fetchedCard.image_uris.normal}}" alt="{{fetchedCard.name}}">
-</div>

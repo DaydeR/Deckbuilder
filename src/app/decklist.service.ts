@@ -18,5 +18,10 @@ export class DecklistService {
 	for (let i = 0; i < count; i++) {
       this.decklist.push(card);
     }
+	this.sortByType();
+  }
+  
+  sortByType() {
+	this.decklist.sort((a, b) => (a.type_line > b.type_line) ? 1 : -1)
   }
 }

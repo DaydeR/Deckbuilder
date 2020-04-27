@@ -1,0 +1,4 @@
+.decklist-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 10%);
+}
