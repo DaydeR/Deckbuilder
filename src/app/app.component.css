@@ -6,9 +6,9 @@
 }
 
 .card-viewer-panel {
-  flex-grow: 1;
+  width: 33%;
 }
 
 .deckbox-panel {
-  flex-grow: 2;
+  width: 67%;
 }
