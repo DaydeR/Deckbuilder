@@ -17,6 +17,7 @@ export class DecklistService {
   }
   
   addCard(card: Card, count: number) {
+	this.setMainType(card);
 	for (let i = 0; i < count; i++) {
       this.decklist.push(card);
 	  console.log("added a card")
@@ -26,7 +27,7 @@ export class DecklistService {
   }
   
   sortByType() {
-	this.decklist.sort((a, b) => (a.type_line > b.type_line) ? 1 : -1)
+	this.decklist.sort((a, b) => ((a.main_type == b.main_type) ? a.name > b.name : a.main_type > b.main_type) ? 1 : -1)
   }
   
   setSelected(card: Card) {
@@ -36,5 +37,25 @@ export class DecklistService {
   
   getSelected() {
 	return this.selectedCard;	
+  }
+  
+  setMainType(card: Card) {
+	if(card.type_line.includes("Land")) {
+		card.main_type = "Land";
+	} else if(card.type_line.includes("Creature")) {
+		card.main_type = "Creature";
+	} else if(card.type_line.includes("Planeswalker")) {
+		card.main_type = "Planeswalker";
+	} else if(card.type_line.includes("Instant")) {
+		card.main_type = "Instant";
+	} else if(card.type_line.includes("Sorcery")) {
+		card.main_type = "Sorcery";
+	} else if(card.type_line.includes("Artifact")) {
+		card.main_type = "Artifact";
+	} else if(card.type_line.includes("Enchantment")) {
+		card.main_type = "Enchantment";
+	} else {
+		card.main_type = "Unknown";
+	}
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { Card } from '../card';
 import { DecklistService } from '../decklist.service';
@@ -9,7 +9,7 @@ import { DecklistService } from '../decklist.service';
   styleUrls: ['./card-viewer.component.css']
 })
 export class CardViewerComponent implements OnInit {
-	selectedCard: Card;
+  selectedCard: Card;
 
   constructor(
     private decklistService: DecklistService,

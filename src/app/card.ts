@@ -3,6 +3,7 @@ export interface Card {
   mana_cost: string;
   cmc: number;
   type_line: string;
+  main_type: string;
   oracle_text: string;
   image_uris: {
 	[key: string]: string
