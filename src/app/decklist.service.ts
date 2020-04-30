@@ -9,6 +9,7 @@ export class DecklistService {
   decklist: Card[] = [];
   selectedCard: Card;
   selectionUpdated = new EventEmitter();
+  decklistUpdated = new EventEmitter();
 
   constructor() { }
   
@@ -24,6 +25,7 @@ export class DecklistService {
     }
 	this.sortByType();
 	this.setSelected(card);
+	this.decklistUpdated.emit();
   }
   
   sortByType() {
