@@ -11,4 +11,5 @@ export interface Card {
   power: number;
   toughness: number;
   loyalty: number;
+  count: number[];
 }

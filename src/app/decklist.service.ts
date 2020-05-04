@@ -19,10 +19,12 @@ export class DecklistService {
   
   addCard(card: Card, count: number) {
 	this.setMainType(card);
+	card.count = [];
 	for (let i = 0; i < count; i++) {
-      this.decklist.push(card);
-	  console.log("added a card")
+      card.count.push(i);
     }
+    this.decklist.push(card);
+	console.log("added a card")
 	this.sortByType();
 	this.setSelected(card);
 	this.decklistUpdated.emit();

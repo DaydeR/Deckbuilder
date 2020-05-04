@@ -36,14 +36,14 @@ export class StatTrackerService {
   }
   
   getLandPercentage() {
-	if(this.decklist.length == 0) {
+	if(this.getLandCount() == 0) {
 	  return 0;
 	}
 	return (this.getLandCount() / this.decklist.length);
   }
   
   getNonLandPercentage() {
-	if(this.decklist.length == 0) {
+	if(this.getNonLandCount() == 0) {
 	  return 0;
 	}
     return (this.getNonLandCount() / this.decklist.length);

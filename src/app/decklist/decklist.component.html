@@ -1,5 +1,7 @@
 <div class="decklist-grid">
-  <div *ngFor="let card of decklist">
-    <img (click)="select(card)" src="{{card.image_uris.small}}" alt="{{card.name}}">
-  </div>
+  <ng-container *ngFor="let card of decklist">
+	<div *ngFor="let i of card.count">
+      <img (click)="select(card)" src="{{card.image_uris.small}}" alt="{{card.name}}">
+	</div>
+  </ng-container>
 </div>
