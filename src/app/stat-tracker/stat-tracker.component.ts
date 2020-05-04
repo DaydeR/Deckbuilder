@@ -27,7 +27,7 @@ export class StatTrackerComponent implements OnInit {
 	this.statTrackerService.setDecklist(this.decklist);
 	this.decklistService.decklistUpdated.subscribe(
 	  () => {
-		//this.averageCMC = this.statTrackerService.getAverageCMC();
+		this.averageCMC = this.statTrackerService.getAverageCMC();
 		this.landCount = this.statTrackerService.getLandCount();
 		this.nonLandCount = this.statTrackerService.getNonLandCount();
         this.landPercentage = this.statTrackerService.getLandPercentage();

@@ -15,14 +15,15 @@ export class StatTrackerService {
   }
   
   getAverageCMC() {
-	if(this.decklist.length == 0) {
+	if(this.getNonLandCount() == 0) {
 	  return 0;
 	}
 	let sum: number = 0;
-	let card;
-	for(card in this.decklist) {
+	for(let card of this.decklist) {
 	  sum += card.cmc;
+	  console.log(sum)
 	}
+	console.log(sum / this.getNonLandCount())
 	return sum / this.getNonLandCount();
   }
   
