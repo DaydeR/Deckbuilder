@@ -21,9 +21,7 @@ export class StatTrackerService {
 	let sum: number = 0;
 	for(let card of this.decklist) {
 	  sum += card.cmc;
-	  console.log(sum)
 	}
-	console.log(sum / this.getNonLandCount())
 	return sum / this.getNonLandCount();
   }
   

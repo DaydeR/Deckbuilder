@@ -18,16 +18,26 @@ export class DecklistService {
   }
   
   addCard(card: Card, count: number) {
-	this.setMainType(card);
-	card.count = [];
-	for (let i = 0; i < count; i++) {
-      card.count.push(i);
-    }
-    this.decklist.push(card);
-	console.log("added a card")
-	this.sortByType();
-	this.setSelected(card);
-	this.decklistUpdated.emit();
+	let existingCard = this.decklist.find(existingCard => existingCard.name == card.name)
+	if(existingCard) {
+		console.log("already in deck")
+		for (let i = 0; i < count; i++) {
+          existingCard.count.push(existingCard.count.length);
+        }
+		this.setSelected(existingCard);
+	    this.decklistUpdated.emit();
+	} else {
+	  this.setMainType(card);
+	  card.count = [];
+	  for (let i = 0; i < count; i++) {
+        card.count.push(i);
+      }
+      this.decklist.push(card);
+	  console.log("added a card")
+	  this.sortByType();
+	  this.setSelected(card);
+	  this.decklistUpdated.emit();
+	}
   }
   
   sortByType() {
