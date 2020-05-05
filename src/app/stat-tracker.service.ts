@@ -14,36 +14,58 @@ export class StatTrackerService {
     this.decklist = decklist;
   }
   
+  getDeckSize() {
+	let size = 0;
+	for(let card of this.decklist) {
+	  size += card.count.length;
+	}
+	return size;
+  }
+  
   getAverageCMC() {
 	if(this.getNonLandCount() == 0) {
 	  return 0;
 	}
 	let sum: number = 0;
 	for(let card of this.decklist) {
-	  sum += card.cmc;
+	  sum += card.cmc * card.count.length;
 	}
 	return sum / this.getNonLandCount();
   }
   
   getLandCount() {
-	return this.decklist.filter(card => card.main_type == "Land").length;
+	let count = 0;
+	for(let card of this.decklist) {
+      if(card.main_type == "Land") {
+	    count += card.count.length;
+	  }
+	}
+	return count;
   }
   
   getNonLandCount() {
-	return (this.decklist.length - this.decklist.filter(card => card.main_type == "Land").length);
+	let count = 0;
+	for(let card of this.decklist) {
+	  if(card.main_type != "Land") {
+	    count += card.count.length;
+	  }
+	}
+	return count;
   }
   
   getLandPercentage() {
-	if(this.getLandCount() == 0) {
+	let landCount = this.getLandCount();
+	if(landCount == 0) {
 	  return 0;
 	}
-	return (this.getLandCount() / this.decklist.length);
+	return (landCount / this.getDeckSize());
   }
   
   getNonLandPercentage() {
-	if(this.getNonLandCount() == 0) {
+	let nonLandCount = this.getNonLandCount();
+	if(nonLandCount == 0) {
 	  return 0;
 	}
-    return (this.getNonLandCount() / this.decklist.length);
+    return (nonLandCount / this.getDeckSize());
   }
 }
