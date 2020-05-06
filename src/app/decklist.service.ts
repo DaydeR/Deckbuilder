@@ -18,7 +18,7 @@ export class DecklistService {
   }
   
   addCard(card: Card, count: number) {
-	let existingCard = this.decklist.find(existingCard => existingCard.name == card.name)
+	let existingCard = this.decklist.find(existingCard => existingCard.name == card.name);
 	if(existingCard) {
 		console.log("already in deck")
 		for (let i = 0; i < count; i++) {
@@ -38,6 +38,22 @@ export class DecklistService {
 	  this.setSelected(card);
 	  this.decklistUpdated.emit();
 	}
+  }
+  
+  removeCard(card: Card, count: number) {
+	let existingCard = this.decklist.find(existingCard => existingCard.name == card.name);
+	if(existingCard) {
+	  if(count >= existingCard.count.length) {
+		this.decklist.splice(this.decklist.indexOf(card), 1);
+		this.selectedCard = null;
+	    this.selectionUpdated.emit(this.selectedCard);
+	  } else {
+		for (let i = 0; i < count; i++) {
+          existingCard.count.pop();
+        }
+	  }
+	}
+	this.decklistUpdated.emit();
   }
   
   sortByType() {

@@ -23,4 +23,11 @@ export class CardViewerComponent implements OnInit {
     );
   }
 
+  addCopy(): void {
+	this.decklistService.addCard(this.selectedCard, 1);
+  }
+  
+  removeCopy(): void {
+	this.decklistService.removeCard(this.selectedCard, 1);
+  }
 }

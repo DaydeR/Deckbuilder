@@ -5,6 +5,8 @@
   <p>{{selectedCard.type_line}}</p>
   <p>{{selectedCard.oracle_text}}</p>
   <p *ngIf="selectedCard.power">{{selectedCard.power}}/{{selectedCard.toughness}}</p>
-  <p *ngIf="selectedCard.loyalty">{{selectedCard.loyalty}}</p>
+  <p *ngIf="selectedCard.loyalty">{{selectedCard.loyalty}} Loyalty</p>
   <p>Count: {{selectedCard.count.length}}</p>
+  <button (click)="addCopy()">Add Copy</button>
+  <button (click)="removeCopy()">Remove Copy</button>
 </div>
