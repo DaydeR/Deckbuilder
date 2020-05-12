@@ -13,6 +13,7 @@ export class CardFetcherComponent implements OnInit {
   cardName: string;
   count: number;
   fetchedCard: Card;
+  cardNameList: string;
 
   constructor(
 	private cardFetcherService: CardFetcherService,
@@ -33,5 +34,9 @@ export class CardFetcherComponent implements OnInit {
 	    this.cardName = null;
 	    this.count = null;
 	  });
+  }
+  
+  addCardList(): void {
+	this.cardFetcherService.getCardList(this.cardNameList);
   }
 }

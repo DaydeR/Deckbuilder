@@ -27,6 +27,18 @@ export class CardFetcherService {
 	  );
   }
   
+  getCardList(searchTerms: string): void {
+	let searchTermList = searchTerms.split("\n");
+	for(let term of searchTermList) {
+	  let splitTerm = term.split(" ");
+	  if(!isNaN(splitTerm[0])) {
+		console.log(splitTerm);
+	  } else {
+		console.log(term);
+	  }
+	}
+  }
+  
   // From Angular 'Tour of Heroes' tutorial
   /**
    * Handle Http operation that failed.

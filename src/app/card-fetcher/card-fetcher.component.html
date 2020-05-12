@@ -1,4 +1,11 @@
-<input [(ngModel)]="cardName" placeholder="Card Name"/>
-<input [(ngModel)]="count" placeholder="#"/>
+<div>
+  <input [(ngModel)]="cardName" placeholder="Card Name"/>
+  <input [(ngModel)]="count" placeholder="#"/>
 
-<button (click)="addCard()">Add</button>
+  <button (click)="addCard()">Add</button>
+</div>
+
+<div>
+  <textarea [(ngModel)]="cardNameList" rows="5"></textarea>
+  <button (click)="addCardList()">Load</button>
+</div>
