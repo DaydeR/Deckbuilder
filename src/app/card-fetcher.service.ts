@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Observable, of } from 'rxjs';
+import { Observable, of, forkJoin } from 'rxjs';
 import { catchError, map, tap, debounceTime } from 'rxjs/operators';
 
 import { Card } from './card';
@@ -19,24 +19,32 @@ export class CardFetcherService {
   ) { }
   
   getCard(searchTerm: string): Observable<Card> {
-	this.parameter = searchTerm.replace(' ', '+');
-    return this.http.get<Card>(this.scryfallUrl+'/cards/named?fuzzy='+this.parameter).
+    return this.http.get<Card>(this.scryfallUrl+'/cards/named?fuzzy='+searchTerm.replace(' ', '+')).
 	  pipe(
 		debounceTime(100),
 	    catchError(this.handleError<Card>('getCard', null)),
 	  );
   }
   
-  getCardList(searchTerms: string): void {
+  getCardList(searchTerms: string): Observable<Card[]> {
 	let searchTermList = searchTerms.split("\n");
+	let observableList:  Observable<Card>[] = [];
 	for(let term of searchTermList) {
 	  let splitTerm = term.split(" ");
-	  if(!isNaN(splitTerm[0])) {
+	  if(+splitTerm[0]) {
 		console.log(splitTerm);
 	  } else {
 		console.log(term);
+		observableList.push(
+		  this.http.get<Card>(this.scryfallUrl+'/cards/named?fuzzy='+term.replace(' ', '+')).
+	        pipe(
+		      debounceTime(100),
+	          catchError(this.handleError<Card>('getCard', null)),
+	        )
+		);
 	  }
 	}
+	return forkJoin(observableList);
   }
   
   // From Angular 'Tour of Heroes' tutorial
