@@ -12,4 +12,6 @@ export interface Card {
   toughness: number;
   loyalty: number;
   count: number[];
+  layout: string;
+  card_faces: Array<Card>;
 }

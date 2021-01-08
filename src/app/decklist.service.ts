@@ -18,6 +18,14 @@ export class DecklistService {
   }
   
   addCard(card: Card, count: number) {
+	if(!count) {
+	  console.log("empty count given, defaulting to 1")
+	  count = 1;
+	}
+	if(!+count || count < 1) {
+	  console.log("invalid count given, cancelling search")
+	  return;
+	}
 	let existingCard = this.decklist.find(existingCard => existingCard.name == card.name);
 	if(existingCard) {
 		console.log("already in deck")

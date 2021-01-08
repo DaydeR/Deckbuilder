@@ -27,6 +27,7 @@ export class CardFetcherComponent implements OnInit {
     this.cardFetcherService.getCard(this.cardName)
 	  .subscribe(card => {
 		if(card) {
+			console.log(card)
 	      this.fetchedCard = card;
 		  this.decklistService.addCard(this.fetchedCard, this.count);
 	      this.fetchedCard = null;
@@ -37,6 +38,16 @@ export class CardFetcherComponent implements OnInit {
   }
   
   addCardList(): void {
-	this.cardFetcherService.getCardList(this.cardNameList);
+	this.cardFetcherService.getCardList(this.cardNameList)
+	  .subscribe(cardList => {
+		for(let card of cardList) {
+		  if(card) {
+		    console.log(card)
+			//this.fetchedCard = card;
+			this.decklistService.addCard(card, 1);
+			//this.fetchedCard = null;
+		  }
+		}
+	  });
   }
 }

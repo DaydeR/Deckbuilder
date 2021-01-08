@@ -10,6 +10,7 @@ import { DecklistService } from '../decklist.service';
 })
 export class CardViewerComponent implements OnInit {
   selectedCard: Card;
+  side: number = 0;
 
   constructor(
     private decklistService: DecklistService,
@@ -19,8 +20,17 @@ export class CardViewerComponent implements OnInit {
 	this.decklistService.selectionUpdated.subscribe(
 	  (selectedCard) => {
         this.selectedCard = this.decklistService.getSelected();
+		this.side = 0;
       }
-    );
+	);
+  }
+  
+  flipCard(): void {
+	if(this.side == 0) {
+	  this.side = 1;
+	} else {
+	  this.side = 0;
+	}
   }
 
   addCopy(): void {

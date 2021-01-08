@@ -1,12 +1,27 @@
 <div *ngIf="selectedCard">
-  <p>{{selectedCard.name}}</p>
-  <img class="card-art" src="{{selectedCard.image_uris.large}}" alt="{{selectedCard.name}}">
-  <p>{{selectedCard.mana_cost}}</p>
-  <p>{{selectedCard.type_line}}</p>
-  <p>{{selectedCard.oracle_text}}</p>
-  <p *ngIf="selectedCard.power">{{selectedCard.power}}/{{selectedCard.toughness}}</p>
-  <p *ngIf="selectedCard.loyalty">{{selectedCard.loyalty}} Loyalty</p>
-  <p>Count: {{selectedCard.count.length}}</p>
-  <button (click)="addCopy()">Add Copy</button>
-  <button (click)="removeCopy()">Remove Copy</button>
+  <div *ngIf="selectedCard.layout == 'normal'">
+    <p>{{selectedCard.name}}</p>
+    <img class="card-art" src="{{selectedCard.image_uris.large}}" alt="{{selectedCard.name}}">
+    <p>{{selectedCard.mana_cost}}</p>
+    <p>{{selectedCard.type_line}}</p>
+    <p>{{selectedCard.oracle_text}}</p>
+    <p *ngIf="selectedCard.power">{{selectedCard.power}}/{{selectedCard.toughness}}</p>
+    <p *ngIf="selectedCard.loyalty">{{selectedCard.loyalty}} Loyalty</p>
+    <p>Count: {{selectedCard.count.length}}</p>
+    <button (click)="addCopy()">Add Copy</button>
+    <button (click)="removeCopy()">Remove Copy</button>
+  </div>
+  <div *ngIf="selectedCard.layout != 'normal'">
+    <p>{{selectedCard.card_faces[side].name}}</p>
+    <img class="card-art" src="{{selectedCard.card_faces[side].image_uris.large}}" alt="{{selectedCard.card_faces[side].name}}">
+    <p>{{selectedCard.card_faces[side].mana_cost}}</p>
+    <p>{{selectedCard.card_faces[side].type_line}}</p>
+    <p>{{selectedCard.card_faces[side].oracle_text}}</p>
+    <p *ngIf="selectedCard.card_faces[side].power">{{selectedCard.card_faces[side].power}}/{{selectedCard.card_faces[side].toughness}}</p>
+    <p *ngIf="selectedCard.card_faces[side].loyalty">{{selectedCard.card_faces[side].loyalty}} Loyalty</p>
+	<button (click)="flipCard()">Flip</button>
+    <p>Count: {{selectedCard.count.length}}</p>
+    <button (click)="addCopy()">Add Copy</button>
+    <button (click)="removeCopy()">Remove Copy</button>
+  </div>
 </div>

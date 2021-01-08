@@ -32,10 +32,9 @@ export class CardFetcherService {
 	for(let term of searchTermList) {
 	  let splitTerm = term.split(" ");
 	  if(+splitTerm[0]) {
-		console.log(splitTerm);
+
 	  } else {
-		console.log(term);
-		observableList.push(
+		observableList.push( 
 		  this.http.get<Card>(this.scryfallUrl+'/cards/named?fuzzy='+term.replace(' ', '+')).
 	        pipe(
 		      debounceTime(100),
