@@ -31,8 +31,22 @@ export class CardFetcherService {
 	let observableList:  Observable<Card>[] = [];
 	for(let term of searchTermList) {
 	  let splitTerm = term.split(" ");
+	  for (let i = 0; i < splitTerm.length; i++) {
+		  console.log(splitTerm[i]);
+	  }
 	  if(+splitTerm[0]) {
-
+		let count = splitTerm[0];
+		let cardName = splitTerm.slice(1).join(' ');
+		console.log(cardName)
+		for (let i = 0; i < count; i++) {
+          observableList.push( 
+			this.http.get<Card>(this.scryfallUrl+'/cards/named?fuzzy='+cardName.replace(' ', '+')).
+			  pipe(
+			    debounceTime(100),
+			    catchError(this.handleError<Card>('getCard', null)),
+	          )
+			);
+        }
 	  } else {
 		observableList.push( 
 		  this.http.get<Card>(this.scryfallUrl+'/cards/named?fuzzy='+term.replace(' ', '+')).
