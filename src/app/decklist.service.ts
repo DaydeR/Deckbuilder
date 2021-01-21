@@ -78,8 +78,26 @@ export class DecklistService {
   }
   
   setMainType(card: Card) {
-	if(card.layout != "normal" && card.layout != "saga") {
+	if(card.layout == "transform") {
 	  if(card.card_faces[0].type_line.includes("Land")) {
+		  card.main_type = "Land";
+	  } else if(card.card_faces[0].type_line.includes("Creature")) {
+	  	card.main_type = "Creature";
+	  } else if(card.card_faces[0].type_line.includes("Planeswalker")) {
+	  	card.main_type = "Planeswalker";
+	  } else if(card.card_faces[0].type_line.includes("Instant")) {
+	  	card.main_type = "Instant";
+	  } else if(card.card_faces[0].type_line.includes("Sorcery")) {
+	  	card.main_type = "Sorcery";
+	  } else if(card.card_faces[0].type_line.includes("Artifact")) {
+	  	card.main_type = "Artifact";
+	  } else if(card.card_faces[0].type_line.includes("Enchantment")) {
+	  	card.main_type = "Enchantment";
+	  } else {
+	  	card.main_type = "Unknown";
+	  }
+	} else if(card.layout == "modal_dfc") {
+	  if(card.type_line.includes("Land")) {
 		  card.main_type = "Land";
 	  } else if(card.card_faces[0].type_line.includes("Creature")) {
 	  	card.main_type = "Creature";
