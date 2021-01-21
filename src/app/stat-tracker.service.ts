@@ -36,7 +36,7 @@ export class StatTrackerService {
   getLandCount() {
 	let count = 0;
 	for(let card of this.decklist) {
-      if(card.main_type == "Land") {
+      if(card.type_line.includes("Land")) {
 	    count += card.count.length;
 	  }
 	}
@@ -46,7 +46,7 @@ export class StatTrackerService {
   getNonLandCount() {
 	let count = 0;
 	for(let card of this.decklist) {
-	  if(card.main_type != "Land") {
+	  if(!card.type_line.includes("Land")) {
 	    count += card.count.length;
 	  }
 	}

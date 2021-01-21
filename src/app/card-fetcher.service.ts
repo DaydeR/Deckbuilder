@@ -35,7 +35,7 @@ export class CardFetcherService {
 		  console.log(splitTerm[i]);
 	  }
 	  if(+splitTerm[0]) {
-		let count = splitTerm[0];
+		let count = Number(splitTerm[0]);
 		let cardName = splitTerm.slice(1).join(' ');
 		console.log(cardName)
 		for (let i = 0; i < count; i++) {

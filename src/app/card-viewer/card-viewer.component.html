@@ -1,5 +1,5 @@
 <div *ngIf="selectedCard">
-  <div *ngIf="selectedCard.layout == 'normal'">
+  <div *ngIf="selectedCard.layout == 'normal' || selectedCard.layout == 'saga'">
     <p>{{selectedCard.name}}</p>
     <img class="card-art" src="{{selectedCard.image_uris.large}}" alt="{{selectedCard.name}}">
     <p>{{selectedCard.mana_cost}}</p>
@@ -11,7 +11,7 @@
     <button (click)="addCopy()">Add Copy</button>
     <button (click)="removeCopy()">Remove Copy</button>
   </div>
-  <div *ngIf="selectedCard.layout != 'normal'">
+  <div *ngIf="selectedCard.layout != 'normal' && selectedCard.layout != 'saga'">
     <p>{{selectedCard.card_faces[side].name}}</p>
     <img class="card-art" src="{{selectedCard.card_faces[side].image_uris.large}}" alt="{{selectedCard.card_faces[side].name}}">
     <p>{{selectedCard.card_faces[side].mana_cost}}</p>

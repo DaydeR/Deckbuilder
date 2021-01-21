@@ -12,6 +12,7 @@ import { StatTrackerService } from '../stat-tracker.service';
 export class StatTrackerComponent implements OnInit {
   decklist: Card[];
   averageCMC: number = 0;
+  deckSize: number = 0;
   landCount: number = 0;
   nonLandCount: number = 0;
   landPercentage: number = 0;
@@ -28,6 +29,7 @@ export class StatTrackerComponent implements OnInit {
 	this.decklistService.decklistUpdated.subscribe(
 	  () => {
 		this.averageCMC = this.statTrackerService.getAverageCMC();
+		this.deckSize = this.statTrackerService.getDeckSize();
 		this.landCount = this.statTrackerService.getLandCount();
 		this.nonLandCount = this.statTrackerService.getNonLandCount();
         this.landPercentage = this.statTrackerService.getLandPercentage();

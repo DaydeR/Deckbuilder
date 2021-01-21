@@ -78,7 +78,7 @@ export class DecklistService {
   }
   
   setMainType(card: Card) {
-	if(card.layout != "normal") {
+	if(card.layout != "normal" && card.layout != "saga") {
 	  if(card.card_faces[0].type_line.includes("Land")) {
 		  card.main_type = "Land";
 	  } else if(card.card_faces[0].type_line.includes("Creature")) {

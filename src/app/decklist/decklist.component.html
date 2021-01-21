@@ -1,10 +1,10 @@
 <div class="decklist-grid">
   <ng-container *ngFor="let card of decklist">
 	<div *ngFor="let i of card.count">
-	  <div *ngIf="card.layout == 'normal'">
+	  <div *ngIf="card.layout == 'normal' || card.layout == 'saga'">
         <img (click)="select(card)" src="{{card.image_uris.small}}" alt="{{card.name}}">
 	  </div>
-	  <div *ngIf="card.layout != 'normal'">
+	  <div *ngIf="card.layout != 'normal' && card.layout != 'saga'">
         <img (click)="select(card)" src="{{card.card_faces[0].image_uris.small}}" alt="{{card.card_faces[0].name}}">
 	  </div>
 	</div>
